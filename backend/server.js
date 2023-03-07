@@ -1,14 +1,32 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 
-const uri = 'mongodb+srv://togetheradmin:together9898@firstcluster.xhz64cl.mongodb.net/?retryWrites=true&w=majority'
+const usersRoute = require('./routes/users');
+
+
+
+const app = express();
+app.use( express.json());
+const PORT = process.env.PORT;
+const URI = process.env.URI;
+
+
+
+
+app.use('/api/users', usersRoute);
+
+
+
 
 async function connect() {
     try {
-        await mongoose.connect(uri);
+        await mongoose.connect(URI);
         console.log("Connected to MongoDB");
-        
+        app.listen(PORT, () => {
+        console.log("Server started on port",PORT);
+})
     } catch (err) {
         console.log(err);
         
@@ -17,6 +35,4 @@ async function connect() {
 }
 
 connect();
-app.listen(8000, () => {
-    console.log("Server started on port 8000");
-})
+
