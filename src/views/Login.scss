@@ -1,4 +1,60 @@
-.login-view-container{
-    
+.login-container{
+    background-color: rgb(29, 29, 29);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65vw;
+    max-width: 500px;
+    padding: 2.5rem;
+    margin: 2.5rem;
+    flex-direction: column;
+    h2{
+        margin-bottom: 1rem;
+        color: white;
+    }
+}
+
+.input-field{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+
+    label{
+        color: white;
+        display: flex;
+    }
+}
+.email-input{
+    margin: auto;
+    width: 200px;
+    height: 5vh;
+}
+.password-input{
+    width: 200px;
+    height: 5vh;
+}
+.sign-in-btn{
+    width: 5rem;
+    height: 5vh;
+    background-color: #FF2E63;
+    color: white;
+    border-style: none;
+    border-radius: 2px;
+    margin-bottom: 5vh;
+    &:hover{
+        transition-duration: 0.5s;
+        box-shadow: 2px 4px 0px;
+        color: #FF2E63;
+        background-color: white;
+        cursor: pointer;
+        width: 5rem;
+    }
+}
+.signup-section{
+    display: flex;
+    p{
+        color: white;
+        margin-right: 4vw;
+    }
     
 }

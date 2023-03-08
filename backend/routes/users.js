@@ -3,10 +3,19 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 router.use( express.json());
+
 router.get('/', async (req, res) => {
     
-    const result = await User.find();
-    res.send({"Users": result})
+    try {
+
+        const result = await User.find();
+        console.log(result);
+        res.json(result)
+    } catch (err) {
+
+        console.err(err);
+    }
+    
 });
 
 
