@@ -12,16 +12,12 @@ mongoose.set('strictQuery', false);
 app.use( express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const __dirname = dirname(fileURLToPath(import.meta.url));  
-const staticPath = join( __dirname, '../../dist' )
-
-const PORT = process.env.PORT || 3005 ;
-const URI = process.env.URI || 'mongodb+srv://togetheradmin:together9898@firstcluster.xhz64cl.mongodb.net/together?retryWrites=true&w=majority';
+const PORT = process.env.PORT || 3005;
+const URI = process.env.URI;
 
 
 
 app.use(cors());
-app.use( express.static(staticPath) )
 
 app.use('/api/users', usersRoute);
 
@@ -30,7 +26,6 @@ app.use('/api/users', usersRoute);
 
 async function connect() {
     try {
-        toString(URI);
         await mongoose.connect(URI);
         console.log("Connected to MongoDB");
         app.listen(PORT, () => {

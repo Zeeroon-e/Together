@@ -46,7 +46,6 @@ import './Login.scss'
     const userExists = await response.json();
     if (response.status === 200) {
       console.log("Signing in with: ",userExists);
-      navigate('/home/create');
     } else {
       console.log("check if email and password are correct. If you dont have an account make sure to sign up");
     }
