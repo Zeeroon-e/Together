@@ -10,7 +10,6 @@ import './login.scss'
  function Login() {
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [backendData, setBackendData] = useState([{}]);
 
   const navigate = useNavigate();
 
@@ -22,7 +21,6 @@ import './login.scss'
     const response = await fetch('http://localhost:3005/api/users');
     const users = await response.json();
     console.log(users);
-    setBackendData(users)
   }
   
   
@@ -48,6 +46,7 @@ import './login.scss'
       console.log("Signing in with: ",userExists);
     } else {
       console.log("check if email and password are correct. If you dont have an account make sure to sign up");
+      console.log(response);
     }
   }
   
