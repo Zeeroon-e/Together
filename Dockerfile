@@ -14,4 +14,4 @@ RUN npm run start-backend
 
 EXPOSE 3005
 
-CMD ["http-server", "dist"]
+CMD ["npm", "run", "start-backend"]
