@@ -13,5 +13,4 @@ RUN npm run build
 
 EXPOSE 3005
 
-CMD 
-# RUN npm backend
+CMD ["http-server", "dist"]
