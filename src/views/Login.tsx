@@ -18,7 +18,7 @@ import './login.scss'
   }
   
   async function getUsers() {
-    const response = await fetch('http://localhost:3005/api/users');
+    const response = await fetch('/api/users');
     const users = await response.json();
     console.log(users);
   }
@@ -39,7 +39,7 @@ import './login.scss'
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials)
     }
-    const response = await fetch('http://localhost:3005/api/users/login', requestOptions)
+    const response = await fetch('/api/users/login', requestOptions)
 
     const userExists = await response.json();
     if (response.status === 200) {
