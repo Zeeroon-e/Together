@@ -9,5 +9,9 @@ RUN npm install
 
 COPY . .
 
-RUN npm run dev
+RUN npm run build
+
+EXPOSE 3005
+
+CMD 
 # RUN npm backend

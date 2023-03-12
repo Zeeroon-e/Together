@@ -1,14 +1,14 @@
 
-import express from 'express';
-import User from '../models/user.js'
-// router.use( express.json());
+const express = require('express');
 const router = express.Router();
+const User = require('../models/user');
+router.use( express.json());
 
 router.get('/', async (req, res) => {
     
     try {
 
-        const result = await userSchema.find();
+        const result = await User.find();
         console.log(result);
         res.json(result)
     } catch (err) {
@@ -66,4 +66,4 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-export default router;
+module.exports = router;
