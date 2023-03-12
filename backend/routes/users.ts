@@ -1,8 +1,8 @@
 
-const express = require('express');
+import express, { Request, Response } from "express";
 const router = express.Router();
-const User = require('../models/user');
-router.use( express.json());
+import  User  from "../models/user.js";
+// router.use( express.json());
 
 router.get('/', async (req, res) => {
     
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         res.json(result)
     } catch (err) {
 
-        console.err(err);
+        console.log(err);
     }
     
 });
@@ -47,7 +47,7 @@ router.post('/signup', async (req, res) => {
 
         if (users) {
 
-            const checkUser = users.find((user) => user.email === credentials.email);
+            const checkUser = users.find((user: { email: any; }) => user.email === credentials.email);
             
             if (!checkUser) {
                 const user = new User(req.body);
@@ -66,4 +66,4 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;
