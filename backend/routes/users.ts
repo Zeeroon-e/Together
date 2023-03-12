@@ -47,14 +47,14 @@ router.post('/signup', async (req, res) => {
 
         if (users) {
 
-            const checkUser = users.find((user: { email: any; }) => user.email === credentials.email);
+            const checkUser = users.find((user) => user.email === credentials.email);
             
             if (!checkUser) {
                 const user = new User(req.body);
                 user.save();
                 res.status(201).json({User: user});
             } else {
-
+                
                 console.log(checkUser.email + " is already in use");
                 res.status(400).json("user already exists");
             }

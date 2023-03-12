@@ -8,7 +8,7 @@ import './login.scss'
 
 
  function Login() {
-  const [userEmail, setUserEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ import './login.scss'
 
   async function userLogin() {
     const credentials = {
-      email: userEmail,
+      email: email,
       password: password
     }
 
@@ -61,7 +61,7 @@ import './login.scss'
         <h2>Together</h2>
         <div className='input-field'>
             <label>E-mail</label>
-            <input type="text"  className='email-input' placeholder="example@hotmail.com" value={userEmail} onChange={(e) => setUserEmail(e.target.value)}/>    
+            <input type="text"  className='email-input' placeholder="example@hotmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>    
         </div>
         <div className='input-field'>
             <label>Password</label>
