@@ -16,7 +16,6 @@ const URI = process.env.URI || 'mongodb+srv://togetheradmin:together9898@firstcl
 
 
 app.use(cors());
-
 app.use('/api/users', usersRoute);
 
 
