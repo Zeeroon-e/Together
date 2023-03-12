@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 
-RUN npm i
+RUN NODE_ENV=development npm i
 
 
 COPY . .
