@@ -42,6 +42,7 @@ router.post('/signup', async (req, res) => {
     
 
     const users = await User.find();
+    console.log(credentials)
     
     try {
 
@@ -53,8 +54,9 @@ router.post('/signup', async (req, res) => {
                 const user = new User(req.body);
                 user.save();
                 res.status(201).json({User: user});
+                console.log(credentials)
             } else {
-                
+                console.log(credentials.email)
                 console.log(checkUser.email + " is already in use");
                 res.status(400).json("user already exists");
             }

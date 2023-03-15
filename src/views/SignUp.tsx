@@ -5,16 +5,39 @@ import './signup.scss'
 
 
 function SignUp() {
-    const [openPop, setOpenPop] = useState(false);
-
-    const signUpPressed = () =>{
-        {setOpenPop(true)}
-    }
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+   
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
 
-    const toggleModal = () => {
-        setModal(!modal)
+    async function userSignIn() {
+        const credentials = {
+            email: email,
+            password: password
+        }
+      
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(credentials)
+        }
+        const response = await fetch('/api/users/signup', requestOptions)
+        const userExists = await response.json();
+
+        if (response.status === 201) {
+
+            console.log("You have succesfully signed up!: ",userExists);
+            setModal(!modal)
+        } else {
+
+            console.log("Email already in use");
+        }
+    }
+
+    
+    function signUpBtn(){
+        userSignIn();
     }
 
     const redirectLogin = () => {
@@ -26,13 +49,13 @@ function SignUp() {
         <h2>Together</h2>
         <div className='input-field'>
             <label>E-mail</label>
-            <input type="text"  className='email-input'/>    
+            <input type="text"  className='email-input' placeholder="example@hotmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>    
         </div>
         <div className='input-field'>
             <label>Password</label>
-            <input type="text"  className='password-input'/>    
+            <input type="text"  className='password-input' placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>    
         </div>
-        <button className='sign-in-btn' onClick={toggleModal}>Sign up</button>
+        <button className='sign-in-btn' onClick={signUpBtn}>Sign up</button>
         <div className='signup-section'>
           <p>Have an account?</p>
           <button className='sign-in-btn' onClick={redirectLogin} >Sign in</button>

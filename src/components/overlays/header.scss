@@ -1,0 +1,109 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+
+    width: 100vw;
+    background-color: #252A34;
+    box-shadow: 0px 0px 10px rgb(95, 95, 95);
+    
+    .nav__toggle{
+      position: absolute;
+      cursor: pointer;
+      width: 25px;
+      margin: 1rem 2.5rem;
+      margin: auto;
+      left: 5px;
+      background-color: none;
+      z-index: 3;
+        svg {
+          width: 1.5rem;
+        }
+  
+      .close {
+        display: none;
+        fill: #ebeaea;
+      }
+  
+      .menu {
+        margin-top: 0.2rem;
+        fill: #ebeaea;
+      }
+    }
+   
+  
+    &__checkbox {
+      display: none;
+    }
+  
+    &__menu {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem;
+      li {
+        height: 2vh;
+        list-style: none;
+        display: none;
+        cursor: pointer;
+        color: #ebeaea;
+      }
+  
+      a {
+        text-decoration: none;
+        color: inherit;
+        padding: 5px;
+  
+        
+        &:hover{
+          transition: 200ms all;
+          border-bottom: 1px solid #fafafa;
+        }
+      }
+  
+      svg {
+        width: 1.5rem;
+      }
+    }
+  }
+  
+  
+  #nav__checkbox:checked ~ ul.nav__menu li {
+    display: block;
+    
+  }
+  
+  
+  #nav__checkbox:checked ~ label.nav__toggle .close {
+    display: block;
+  }
+  
+  #nav__checkbox:checked ~ label.nav__toggle .menu {
+    display: none;
+  }
+  
+  
+  @media only screen and (min-width: 700px) {
+    .nav {
+      &__toggle {
+        display: none;
+      }
+  
+      &__menu {
+        flex-direction: row;
+        justify-content: space-around;
+        
+        
+        li {
+          display: block;
+          float: right;
+        }
+      }
+    }
+
+    
+}
+
+
+ 

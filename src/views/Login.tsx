@@ -17,11 +17,11 @@ import './login.scss'
     navigate('/signup');
   }
   
-  async function getUsers() {
-    const response = await fetch('/api/users');
-    const users = await response.json();
-    console.log(users);
-  }
+  // async function getUsers() {
+  //   const response = await fetch('/api/users');
+  //   const users = await response.json();
+  //   console.log(users);
+  // }
   
   
   useEffect(() => {
@@ -42,11 +42,13 @@ import './login.scss'
     const response = await fetch('/api/users/login', requestOptions)
 
     const userExists = await response.json();
+
     if (response.status === 200) {
       console.log("Signing in with: ",userExists);
+      localStorage.setItem('activeUser', userExists._id);
+      navigate('/home');
     } else {
       console.log("check if email and password are correct. If you dont have an account make sure to sign up");
-      console.log(response);
     }
   }
   
