@@ -42,7 +42,7 @@ router.post('/signup', async (req, res) => {
     
 
     const users = await User.find();
-    console.log(credentials)
+    console.log(credentials.email)
     
     try {
 

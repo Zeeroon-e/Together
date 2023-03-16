@@ -7,11 +7,13 @@ import './signup.scss'
 function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [outPutMsg, setoutPutMsg] = useState('');
+
    
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
 
-    async function userSignIn() {
+    async function userSignUp() {
         const credentials = {
             email: email,
             password: password
@@ -25,19 +27,29 @@ function SignUp() {
         const response = await fetch('/api/users/signup', requestOptions)
         const userExists = await response.json();
 
-        if (response.status === 201) {
+        if (response.status === 201 ) {
+            if (email.length > 6 && email.includes("@")) {
 
-            console.log("You have succesfully signed up!: ",userExists);
-            setModal(!modal)
+                if (password.length > 6) {
+                    console.log("You have succesfully signed up!: ",userExists);
+                    setModal(!modal)
+                } else {
+                    setoutPutMsg("password lengt must be more then 6 letters")
+                }
+                
+            } else{
+                setoutPutMsg("email lengt must be more then 6 letters and include @")
+            }
+            
         } else {
-
+            setoutPutMsg("Email already in use")
             console.log("Email already in use");
         }
     }
 
     
     function signUpBtn(){
-        userSignIn();
+        userSignUp();
     }
 
     const redirectLogin = () => {
@@ -54,6 +66,9 @@ function SignUp() {
         <div className='input-field'>
             <label>Password</label>
             <input type="text"  className='password-input' placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>    
+        </div>
+        <div className='output-text'>
+            <p>{outPutMsg}</p>
         </div>
         <button className='sign-in-btn' onClick={signUpBtn}>Sign up</button>
         <div className='signup-section'>

@@ -3,8 +3,14 @@ import Header from '../components/overlays/Header'
 import './home.scss'
 function Home() {
   return (
-    <div className='header-display'>
-      <Header />
+    <div>
+      <nav className='header-display'>
+        <Header />
+      </nav>
+      <main className='content-container'>
+
+      </main>
+    
     </div>
   )
 }
