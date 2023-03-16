@@ -1,6 +1,11 @@
 .header-display{
     position: absolute;
-    z-index: 10;
     top: 0;
     left: 0;
+}
+
+.content-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
 }
