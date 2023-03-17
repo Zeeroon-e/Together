@@ -1,6 +1,6 @@
-
 import './createform.scss';
 import { useState } from 'react';
+
 function CreateForm() {
     const [leftName, setLeftName] = useState('')
     const [leftBirthDate, setLeftBirthDate] = useState('')
@@ -10,11 +10,21 @@ function CreateForm() {
 
     const [dateTogether, setDateTogether] = useState('')
 
+    const [addField, setAddField] = useState(false)
+
     
     console.log(leftName)
     console.log(leftBirthDate)
-    function addOwnDate(){
+    const addOwnDate = ()=> {
         console.log("clicked");
+        if (addField === true) {
+            setAddField(false);    
+        }
+        if (addField === false) {
+            setAddField(true);    
+        }
+        
+       
     }
 
   return (
@@ -60,8 +70,18 @@ function CreateForm() {
             <input type="date" value={dateTogether} onChange={(e) => setDateTogether(e.target.value)}/>
         </div>
         <div className='own-date-container'>
-            <label htmlFor="">Add your own special day</label>
+            <h4 className='own-date-title'>Add your own special day</h4>
+            <div className='add-field'>
+                <label htmlFor="">Title</label>
+                <input type="text" />
+                <label htmlFor="">Date</label>
+                <input type="date" />
+            </div>
             <p className='add-icon' onClick={addOwnDate}>t</p>
+        </div>
+        <div>
+            
+            
         </div>
       
     </form>
