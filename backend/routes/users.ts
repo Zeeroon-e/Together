@@ -42,7 +42,6 @@ router.post('/signup', async (req, res) => {
     
 
     const users = await User.find();
-    console.log(credentials.email)
     
     try {
 
@@ -51,14 +50,23 @@ router.post('/signup', async (req, res) => {
             const checkUser = users.find((user) => user.email === credentials.email);
             
             if (!checkUser) {
-                const user = new User(req.body);
-                user.save();
-                res.status(201).json({User: user});
-                console.log(credentials)
+
+                if (credentials.email.length > 6 && credentials.email.includes("@")) {
+
+                    if (credentials.password.length > 6) {
+                        const user = new User(req.body);
+                        user.save();
+                        res.status(201).json({User: user}); 
+                    } else {
+                        res.status(411).json("password must be more then 6 letters");
+                    }
+                    
+                } else {
+                    res.status(411).json("email must be more then 6 letters and include @");
+                }
+                
             } else {
-                console.log(credentials.email)
-                console.log(checkUser.email + " is already in use");
-                res.status(400).json("user already exists");
+                res.status(302).json("user already exists");
             }
                 
         }

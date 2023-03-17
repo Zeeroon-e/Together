@@ -25,26 +25,16 @@ function SignUp() {
             body: JSON.stringify(credentials)
         }
         const response = await fetch('/api/users/signup', requestOptions)
-        const userExists = await response.json();
+        const data = await response.json();
 
-        if (response.status === 201 ) {
-            if (email.length > 6 && email.includes("@")) {
+        if (response.status === 201 ) { 
+            console.log("You have succesfully signed up!: ",data);
+            setModal(!modal)
 
-                if (password.length > 6) {
-                    console.log("You have succesfully signed up!: ",userExists);
-                    setModal(!modal)
-                } else {
-                    setoutPutMsg("password lengt must be more then 6 letters")
-                }
-                
-            } else{
-                setoutPutMsg("email lengt must be more then 6 letters and include @")
-            }
-            
-        } else {
-            setoutPutMsg("Email already in use")
-            console.log("Email already in use");
+        } else if(response.status == 411){
+                setoutPutMsg(data);
         }
+        
     }
 
     
