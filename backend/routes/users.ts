@@ -1,5 +1,6 @@
 
-import express, { Request, Response } from "express";
+import express from "express";
+import { Request, Response } from "express";
 const router = express.Router();
 import  User  from "../models/user.js";
  router.use( express.json());
@@ -19,7 +20,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req: Request, res: Response) => {
     
     try {
         const credentials = req.body;
@@ -37,7 +38,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', async (req: Request, res: Response) => {
     const credentials = req.body;
     
 
