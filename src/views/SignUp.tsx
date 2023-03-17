@@ -34,6 +34,9 @@ function SignUp() {
         } else if(response.status == 411){
                 setoutPutMsg(data);
         }
+        else if(response.status == 302){
+            setoutPutMsg(data);
+    }
         
     }
 
@@ -47,7 +50,7 @@ function SignUp() {
     }
 
   return (
-    <div className='login-container'>
+    <div className='signup-container'>
         <h2>Together</h2>
         <div className='input-field'>
             <label>E-mail</label>
@@ -60,7 +63,7 @@ function SignUp() {
         <div className='output-text'>
             <p>{outPutMsg}</p>
         </div>
-        <button className='sign-in-btn' onClick={signUpBtn}>Sign up</button>
+        <button className='sign-up-btn' onClick={signUpBtn}>Sign up</button>
         <div className='signup-section'>
           <p>Have an account?</p>
           <button className='sign-in-btn' onClick={redirectLogin} >Sign in</button>

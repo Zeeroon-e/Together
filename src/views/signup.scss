@@ -2,16 +2,118 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 65%;
-    height: 60%;
-    position: absolute;
-    background-color: rgb(29, 29, 29);
+    position: fixed;
+    background-color: #00000073;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    color: rgb(31, 31, 31);
+    .overlay{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 1rem;
+        background-color: #ebebeb;
+        max-width: 450px;
+        min-width: 150px;
+        height: 40vh;
+        font-size: calc(15px + 0.390625vw);
+        button{
+            width: 5rem;
+        height: 5vh;
+        background-color: #FF2E63;
+        color: white;
+        border-style: none;
+        border-radius: 2px;
+        margin-bottom: 5vh;
+        &:hover{
+            transition-duration: 0.5s;
+            box-shadow: 2px 4px 0px;
+            color: #FF2E63;
+            background-color: white;
+            cursor: pointer;
+            width: 5rem;
+        }
+        }
+        
+    }
 }
 
 .output-text{
+    max-width: 100%;
     color: white;
     font-size: 0.7em;
-    background-color: rgb(60, 61, 61);
-    padding: 10px;
-    margin: 10px;
+    margin-bottom: 1rem;
+    
 }
+.signup-container{
+    background-color: rgb(29, 29, 29);
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    h2{
+        margin-bottom: 1rem;
+        color: white;
+    }
+        .input-field{
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        label{
+            color: white;
+            display: flex;
+        }
+    }
+    .email-input{
+        max-width: 60vw;
+        height: 5vh;
+    }
+    .password-input{
+        max-width: 60vw;
+        height: 5vh;
+    }
+    .sign-up-btn{
+        width: 5rem;
+        height: 5vh;
+        background-color: #FF2E63;
+        color: white;
+        border-style: none;
+        border-radius: 2px;
+        margin-bottom: 5vh;
+        &:hover{
+            transition-duration: 0.5s;
+            box-shadow: 2px 4px 0px;
+            color: #FF2E63;
+            background-color: white;
+            cursor: pointer;
+            width: 5rem;
+        }
+    }
+
+        
+
+    .sign-in-btn{
+        background-color: rgb(29, 29, 29);
+        box-shadow: 1px 4px 6px  #00000056;
+        color: white;
+        width: 5rem;
+        height: 5vh;
+        border-style: none;
+        border-radius: 2px;
+        margin-bottom: 5vh;
+        &:hover{
+            transition-duration: 0.5s;
+            box-shadow: 2px 4px 0px;
+            color: #FF2E63;
+            background-color: white;
+            cursor: pointer;
+            width: 5rem;
+        }
+    }
+}
+

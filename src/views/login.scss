@@ -1,31 +1,32 @@
 .login-container{
     background-color: rgb(29, 29, 29);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 65vw;
-    max-width: 500px;//d
     padding: 2.5rem;
-    margin: 2.5rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
     flex-direction: column;
     h2{
         margin-bottom: 1rem;
         color: white;
+        font-size: 1.5rem;
     }
 }
 
 .input-field{
-    margin-bottom: 10px;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
 
     label{
         color: white;
         display: flex;
+        font-size:  calc(15px + 0.390625vw);
     }
 }
+button{
+    font-size:  calc(15px + 0.390625vw);
+}
 .email-input{
-    margin: auto;
     max-width: 60vw;
     height: 5vh;
 }
@@ -52,9 +53,29 @@
 }
 .signup-section{
     display: flex;
+    align-items: center;
+    flex-direction: column;
     p{
         color: white;
         margin-right: 4vw;
+    }
+    .sign-up-btn{
+        background-color: rgb(29, 29, 29);
+        box-shadow: 1px 4px 6px  #00000056;
+        color: white;
+        width: 5rem;
+        height: 5vh;
+        border-style: none;
+        border-radius: 2px;
+        margin-bottom: 5vh;
+        &:hover{
+            transition-duration: 0.5s;
+            box-shadow: 2px 4px 0px;
+            color: #FF2E63;
+            background-color: white;
+            cursor: pointer;
+            width: 5rem;
+        }
     }
     
 }

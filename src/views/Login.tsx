@@ -59,7 +59,7 @@ import './login.scss'
   
 
   return (
-    <div className='login-container'>
+    <div className='login-container content-wrapper'>
         <h2>Together</h2>
         <div className='input-field'>
             <label>E-mail</label>
@@ -72,7 +72,7 @@ import './login.scss'
         <button className='sign-in-btn' onClick={signInBtn}>Sign in</button>
         <div className='signup-section'>
           <p>Dont have an account?</p>
-          <button className='sign-in-btn' onClick={RedirectSignup}>Sign up</button>
+          <button className='sign-up-btn' onClick={RedirectSignup}>Sign up</button>
         </div>
     </div>
   )
