@@ -1,31 +1,38 @@
 import './createform.scss';
-import { useState } from 'react';
+import { Key, useState } from 'react';
 
 function CreateForm() {
-    const [leftName, setLeftName] = useState('')
-    const [leftBirthDate, setLeftBirthDate] = useState('')
+    const [leftName, setLeftName] = useState('');
+    const [leftBirthDate, setLeftBirthDate] = useState('');
 
-    const [rightName, setRightName] = useState('')
-    const [rightBirthDate, setRightBirthDate] = useState('')
+    const [rightName, setRightName] = useState('');
+    const [rightBirthDate, setRightBirthDate] = useState('');
 
-    const [dateTogether, setDateTogether] = useState('')
+    const [dateTogether, setDateTogether] = useState('');
 
-    const [addField, setAddField] = useState(false)
+    const [ allSpecDates, setAllSpecDates] = useState<any>([]);
+    const [addTitle, setAddTitle] = useState('');
+    const [addDate, setAddDate] = useState('');
 
-    
-    console.log(leftName)
-    console.log(leftBirthDate)
-    const addOwnDate = ()=> {
-        console.log("clicked");
-        if (addField === true) {
-            setAddField(false);    
-        }
-        if (addField === false) {
-            setAddField(true);    
-        }
-        
-       
+    interface specDate {
+        title: string;
+        date: string;
     }
+
+    const handleAddSpecDay = () => {
+        let newSpecDay = {
+            title: addTitle,
+            date: addDate
+        }
+
+        let updatedSpecDateArr: any = [...allSpecDates];
+        updatedSpecDateArr.push(newSpecDay)
+        setAllSpecDates(updatedSpecDateArr)
+    }
+    console.log(leftName)
+    console.log(addTitle)
+    console.log(leftBirthDate)
+    
 
   return (
     <form className='form' >
@@ -73,14 +80,22 @@ function CreateForm() {
             <h4 className='own-date-title'>Add your own special day</h4>
             <div className='add-field'>
                 <label htmlFor="">Title</label>
-                <input type="text" />
+                <input type="text" value={addTitle} onChange={(e) => setAddTitle(e.target.value)}/>
                 <label htmlFor="">Date</label>
-                <input type="date" />
+                <input type="date" value={addDate} onChange={(e) => setAddDate(e.target.value)}/>
             </div>
-            <p className='add-icon' onClick={addOwnDate}>t</p>
+            <p className='add-icon' onClick={handleAddSpecDay}></p>
         </div>
-        <div>
-            
+        <div className='special-dates'>
+            {allSpecDates.map((item: {title:string, date:string}, index: Key) => {
+                return(
+                    <div className='special-date-list' key={index}>
+                        <h4>{item.title}</h4>
+                        <h5>{item.date}</h5>
+                        <button></button>
+                    </div>
+                )
+            })}
             
         </div>
       
