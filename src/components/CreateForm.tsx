@@ -1,7 +1,7 @@
 import './createform.scss';
 import { Key, useState } from 'react';
 import photo from '../assets/Add_round.svg'
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function CreateForm() {
     const [leftName, setLeftName] = useState('');
@@ -17,6 +17,21 @@ function CreateForm() {
     const [addDate, setAddDate] = useState('');
 
     const [postImage, setPostImage] = useState<any>({ myFile : ""});
+    const [dataToServer, setDataToServer] = useState<datatoBackend >();
+    const navigate = useNavigate();
+
+    
+
+    interface datatoBackend {
+         sendData: {
+            __id: string ;
+            data: {
+                names: string[];
+                birthdates: string[];
+                togetherdate: string;
+            };
+        }
+    }
 
     const handleAddSpecDay = () => {
         let newSpecDay = {
@@ -39,21 +54,42 @@ function CreateForm() {
     
      let activeUser = localStorage.getItem('activeUser')
 
-   
+    async function saveToServer() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataToServer)
+        }
 
-    const handleSubmit = async (e:any) =>{
-        let sendData = {
+        const response = await fetch('/api/files/upload', requestOptions)
+
+        const data = await response.json();
+        console.log(data)
+
+        if (response.status === 201) {
+            // console.log("uploaded: ",data);
+            // navigate('/home/user');
+
+        } else {
+            console.log("didnt upload");
+        }
+    }
+
+    const handleSubmit =  (e:any) =>{
+        e.preventDefault();
+        let sendData: any = {
             __id: activeUser,
             data: {
-                img: postImage.myFile,
                 names: [leftName,rightName],
                 birthdates: [leftBirthDate, rightBirthDate],
                 togetherdate: dateTogether,
             }
         }
-        e.preventDefault();
+        console.log(dataToServer)
+        setDataToServer(sendData);
+        saveToServer();
         
-        console.log(sendData)
+
     }
 
     const handleFileUpload = async (e:any) => {
@@ -64,7 +100,7 @@ function CreateForm() {
   return (
     <form className='form' onSubmit={handleSubmit}>
         <div className='photo'>
-            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg' onChange={(e) => handleFileUpload(e)} />
+            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg'  />
             <label htmlFor="file-upload" className='custom-file-upload'>
                 <img src={postImage.myFile || photo} alt="add photo" className='photo-display' />
             </label>
@@ -84,7 +120,7 @@ function CreateForm() {
 
               <div className='dateofbirth'>
                   <label htmlFor="text">Birthdate</label>
-                  <input type="date" required value={leftBirthDate} onChange={(e) => setLeftBirthDate(e.target.value)}/>
+                  <input type="date"  value={leftBirthDate} onChange={(e) => setLeftBirthDate(e.target.value)}/>
               </div>
             </div>
 

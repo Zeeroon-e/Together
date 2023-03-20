@@ -22,11 +22,12 @@ const URI = process.env.URI || 'mongodb+srv://togetheradmin:together9898@firstcl
 const __dirname = dirname(fileURLToPath(import.meta.url));  
 const staticPath = join( __dirname, '../../dist' )
 
+
 app.use( express.static(staticPath) )
 app.use(cors({ origin: '*' }));
 
 app.use('/api/users', usersRoute);
-app.use('/api/users', handleFileRoute);
+app.use('/api/files', handleFileRoute);
 
 
 
