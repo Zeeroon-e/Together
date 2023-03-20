@@ -2,6 +2,7 @@ import './createform.scss';
 import { Key, useState } from 'react';
 
 function CreateForm() {
+    const [image, setImage] = useState({});
     const [leftName, setLeftName] = useState('');
     const [leftBirthDate, setLeftBirthDate] = useState('');
 
@@ -29,20 +30,42 @@ function CreateForm() {
         updatedSpecDateArr.push(newSpecDay)
         setAllSpecDates(updatedSpecDateArr)
     }
-    console.log(leftName)
-    console.log(addTitle)
-    console.log(leftBirthDate)
+
+    const handleDeleteSpecDay = (index: any ) => {
+         let reducedSpecDate = [...allSpecDates];
+         reducedSpecDate.splice(index);
+         setAllSpecDates(reducedSpecDate);
+        console.log(index)    
+    }
+    
+    
+    let activeUser = localStorage.getItem('activeUser')
+
+    const submitBtn = (e) =>{
+        e.preventDefault();
+
+        let userData = {
+            
+            __id: activeUser,
+            leftName: leftName,
+            rightName: rightName,
+            leftBirthDate: leftBirthDate,
+            rightBirthDate: rightBirthDate,
+            dateTogether: dateTogether,    
+        }
+        
+    }
     
 
   return (
-    <form className='form' >
+    <form className='form' onSubmit={submitBtn}>
         <div className='photo'>
-            <input type="file" id='file' className='file'/>
-            <label htmlFor="file" className='file-label' > Upload Photo<p className='icon'>f</p></label>
+            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg'  />
+            <label htmlFor="file" className='custom-file-upload' > Upload Photo<p className='icon'>f</p></label>
         </div>
         <div className='icon-container'>
-            <p className='man-icon'>s</p>
-            <p className='woman-icon'>s</p>
+            <p className='man-icon'></p>
+            <p className='woman-icon'></p>
 
         </div>
         
@@ -50,12 +73,12 @@ function CreateForm() {
             <div className='field'> 
               <div className='name'>
                   <label htmlFor="text">Name</label>
-                  <input type="text" value={leftName} onChange={(e) => setLeftName(e.target.value)}/>
+                  <input type="text" required value={leftName} onChange={(e) => setLeftName(e.target.value)}/>
               </div>
 
               <div className='dateofbirth'>
                   <label htmlFor="text">Birthdate</label>
-                  <input type="date" value={leftBirthDate} onChange={(e) => setLeftBirthDate(e.target.value)}/>
+                  <input type="date" required value={leftBirthDate} onChange={(e) => setLeftBirthDate(e.target.value)}/>
               </div>
             </div>
 
@@ -92,12 +115,14 @@ function CreateForm() {
                     <div className='special-date-list' key={index}>
                         <h4>{item.title}</h4>
                         <h5>{item.date}</h5>
-                        <button></button>
+                        <p className='delete-icon' onClick={()=> handleDeleteSpecDay(index)}></p>
                     </div>
                 )
             })}
             
         </div>
+
+        <input type="submit" />
       
     </form>
   )

@@ -3,7 +3,7 @@ import express from "express";
 import { Request, Response } from "express";
 const router = express.Router();
 import  User  from "../models/user.js";
- router.use( express.json());
+router.use( express.json());
 
 router.get('/', async (req, res) => {
     

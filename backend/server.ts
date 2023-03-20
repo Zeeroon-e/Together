@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import usersRoute from './routes/users.js';
+import handleFileRoute from './routes/handleFile.js';
 import cors from 'cors';
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -25,6 +26,7 @@ app.use( express.static(staticPath) )
 app.use(cors({ origin: '*' }));
 
 app.use('/api/users', usersRoute);
+app.use('/api/users', handleFileRoute);
 
 
 
