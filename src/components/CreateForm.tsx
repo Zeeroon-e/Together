@@ -1,8 +1,8 @@
 import './createform.scss';
 import { Key, useState } from 'react';
+import photo from '../assets/Add_round.svg'
 
 function CreateForm() {
-    const [image, setImage] = useState({});
     const [leftName, setLeftName] = useState('');
     const [leftBirthDate, setLeftBirthDate] = useState('');
 
@@ -41,27 +41,20 @@ function CreateForm() {
     
     let activeUser = localStorage.getItem('activeUser')
 
-    const submitBtn = (e) =>{
+    const handleSubmit = (e:any) =>{
         e.preventDefault();
-
-        let userData = {
-            
-            __id: activeUser,
-            leftName: leftName,
-            rightName: rightName,
-            leftBirthDate: leftBirthDate,
-            rightBirthDate: rightBirthDate,
-            dateTogether: dateTogether,    
-        }
-        
     }
-    
 
+    const handleFileUpload = async (e:any) => {
+
+    }
   return (
-    <form className='form' onSubmit={submitBtn}>
+    <form className='form' onSubmit={handleSubmit}>
         <div className='photo'>
-            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg'  />
-            <label htmlFor="file" className='custom-file-upload' > Upload Photo<p className='icon'>f</p></label>
+            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg' onChange={(e) => handleFileUpload(e)} />
+            <label htmlFor="file-upload" className='custom-file-upload'>
+                <img src={photo} alt="add photo" />
+            </label>
         </div>
         <div className='icon-container'>
             <p className='man-icon'></p>
@@ -122,10 +115,24 @@ function CreateForm() {
             
         </div>
 
-        <input type="submit" />
+        <button type='submit'>Save</button>
       
     </form>
   )
 }
 
 export default CreateForm
+
+function convertToBase64(file: any){
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+            resolve(fileReader.result);    
+        };
+        fileReader.onerror = (error) => {
+            reject(error);
+        }
+
+    })
+}
