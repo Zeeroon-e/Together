@@ -14,15 +14,29 @@ router.use( express.json());
 router.post('/upload', async (req, res) => {
     const body = req.body;
     
-    // console.log(body);
+    const checkDb = await FormData.find();
     try {
         
-        const formdata = new FormData(body);
-        formdata.save();
-        console.log(body,'ddddddddd');
-        res.status(201).json("success",);
-    } catch (error) {
-        res.status(409).json(error);
+
+        if (checkDb) {
+            const checkifexist = checkDb.find((data) => data.__id === body.__id);
+            
+            if (!checkifexist) {
+                const formdata = new FormData(body);
+                formdata.save();
+                console.log(body,'Saved Data');
+                res.status(201).json("success",);
+                
+            } else {
+                res.status(302).json("form already Saved");    
+            }
+            
+        } else{
+            res.status(404).json("Not found");
+        }
+        
+    } catch (err) {
+        console.error(err);
     }
 });
 

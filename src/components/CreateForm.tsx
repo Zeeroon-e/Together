@@ -67,8 +67,7 @@ function CreateForm() {
         console.log(data)
 
         if (response.status === 201) {
-            // console.log("uploaded: ",data);
-            // navigate('/home/user');
+            navigate('/home');
 
         } else {
             console.log("didnt upload");

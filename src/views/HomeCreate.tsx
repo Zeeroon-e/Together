@@ -1,6 +1,7 @@
 import React from 'react'
+import CreateForm from '../components/CreateForm'
 import Header from '../components/Header'
-
+import './homeCreate.scss'
 function Home() {
   return (
     <div>
@@ -8,7 +9,7 @@ function Home() {
         <Header />
       </nav>
       <main className='content-container'>
-        
+        <CreateForm />
       </main>
     
     </div>
