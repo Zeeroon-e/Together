@@ -1,6 +1,7 @@
 import './createform.scss';
 import { Key, useState } from 'react';
 import photo from '../assets/Add_round.svg'
+import axios from 'axios'
 
 function CreateForm() {
     const [leftName, setLeftName] = useState('');
@@ -15,10 +16,7 @@ function CreateForm() {
     const [addTitle, setAddTitle] = useState('');
     const [addDate, setAddDate] = useState('');
 
-    interface specDate {
-        title: string;
-        date: string;
-    }
+    const [postImage, setPostImage] = useState<any>({ myFile : ""});
 
     const handleAddSpecDay = () => {
         let newSpecDay = {
@@ -39,21 +37,36 @@ function CreateForm() {
     }
     
     
-    let activeUser = localStorage.getItem('activeUser')
+     let activeUser = localStorage.getItem('activeUser')
 
-    const handleSubmit = (e:any) =>{
+   
+
+    const handleSubmit = async (e:any) =>{
+        let sendData = {
+            __id: activeUser,
+            data: {
+                img: postImage.myFile,
+                names: [leftName,rightName],
+                birthdates: [leftBirthDate, rightBirthDate],
+                togetherdate: dateTogether,
+            }
+        }
         e.preventDefault();
+        
+        console.log(sendData)
     }
 
     const handleFileUpload = async (e:any) => {
-
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file)
+        setPostImage({...postImage, myFile : base64})
     }
   return (
     <form className='form' onSubmit={handleSubmit}>
         <div className='photo'>
             <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg' onChange={(e) => handleFileUpload(e)} />
             <label htmlFor="file-upload" className='custom-file-upload'>
-                <img src={photo} alt="add photo" />
+                <img src={postImage.myFile || photo} alt="add photo" className='photo-display' />
             </label>
         </div>
         <div className='icon-container'>

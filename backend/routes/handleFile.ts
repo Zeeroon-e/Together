@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/file/upload', async (req, res) => {
+router.post('/upload', async (req, res) => {
     const body = req.body;
     try {
         const newImage = await File.create(body);
