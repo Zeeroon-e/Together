@@ -48,13 +48,17 @@ function Home() {
     
     const findSign = (date:any) => {
       const days = [21, 20, 21, 21, 22, 22, 23, 24, 24, 24, 23, 22];
-      const signs = ["Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn"];
+      const signs = ["empty","Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", ];
       // let month = date.getMonth();
       // let day = date.getDate();
       
       const sliced = date.slice(5,7);
       let month = sliced;
-      let day = 11;
+      
+      const slicedDay = date.slice(8,10)
+      
+      let day = slicedDay;
+      console.log("ggggggg",day);
       if (sliced.includes(0)) {
         
         month = sliced.slice(1,2)
@@ -116,7 +120,7 @@ function Home() {
           <div className='together-container'>
             <h3>YOU HAVE BEEN TOGETHER FOR</h3>
             <div className='months-and-days'>
-              <h5>{months} Months and {days} days</h5>
+              <h5>{months} Months Or {days} days</h5>
             </div>
             <h5 className='weeks'>{weeks} Weeks</h5>
           </div>
