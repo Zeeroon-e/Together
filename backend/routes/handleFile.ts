@@ -43,7 +43,6 @@ router.post('/upload', async (req, res) => {
                 formdata.save();
                 console.log(body,'Saved Data');
                 res.status(201).json("success",); 
-            
         }
         
     } catch (err) {

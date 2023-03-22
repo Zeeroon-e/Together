@@ -1,0 +1,63 @@
+.content-container{
+    background-color: #252A34;
+    width: 80vw;
+    height: 100vh;
+}
+.info-container{
+    color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.photo{
+    width: 100%;
+    height: 30vh;
+}
+.icon-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: 0px 4px 4px 0px #0505056b;
+    
+}
+.together-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0rem;
+    .months-and-days{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: 2rem;
+        background-color: #252A34;
+        box-shadow: inset 4px 0px 4px #00000050, inset 0 4px 4px #0000007a;
+    }
+    .weeks{
+        background-color: white;
+        color: #252A34;
+        padding: 1vw;
+    }
+}
+
+.zodiac-signs-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .zodiac-signs{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: 2rem;
+        background-color: #252A34;
+        box-shadow: inset 4px 0px 4px #00000050, inset 0 4px 4px #0000007a; 
+    }
+
+}
