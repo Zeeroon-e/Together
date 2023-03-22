@@ -2,7 +2,6 @@ import {useState} from 'react';
 import Header from '../components/Header';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
-import signTeller from 'sign-teller';
 import './home.scss'
 import icon1 from '../assets/man_icon.svg';
 import icon2 from '../assets/woman_icon.svg';
@@ -15,6 +14,8 @@ function Home() {
   const [months, setMonths] = useState<number>();
   const [days, setDays] = useState<number>();
   const [weeks, setWeeks] = useState<number>();
+  const [zodiac1, setZodiac1] = useState('');
+  const [zodiac2, setZodiac2] = useState('');
 
 
 
@@ -41,13 +42,38 @@ function Home() {
     setWeeks(correctnumber(diffWeeks));
 
     setMonths(correctnumber(diffMonths));
-    console.log("display",data);
-    console.log("date 1 ==",date1)
-    console.log("Calc",diffMonths)
 
-    const dateOfBirth = { day: 4, month: 7 }
-    const signDetails = signTeller(dateOfBirth);
-    console.log(signDetails.sign)
+
+    
+    
+    const findSign = (date:any) => {
+      const days = [21, 20, 21, 21, 22, 22, 23, 24, 24, 24, 23, 22];
+      const signs = ["Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn"];
+      // let month = date.getMonth();
+      // let day = date.getDate();
+      
+      const sliced = date.slice(5,7);
+      let month = sliced;
+      let day = 11;
+      if (sliced.includes(0)) {
+        
+        month = sliced.slice(1,2)
+        
+      }
+      
+      if(month == 0 && day <= 20){
+        month = 11;
+      }else if(day < days[month]){
+        month--;
+      };
+      return signs[month];
+    };
+    setZodiac1(findSign(data.birthdates[0]))
+    setZodiac2(findSign(data.birthdates[1]))
+
+    
+
+    
 
     
   }
@@ -58,10 +84,10 @@ function Home() {
     let activeUser = localStorage.getItem('activeUser');
     const found = data.filter((data: { user: string | null; }) => data.user === activeUser)
     if (found.length > 0) {
-      console.log('found!', found[0].data.names[0])
+      
       displayData(found[0].data)
     } else {
-      console.log('didnt find');
+      console.log('didnt find data');
     }
     
 
@@ -99,11 +125,11 @@ function Home() {
             <div className='zodiac-signs'>
               <div className='zodiac'>
                 <img src="" alt="" />
-                <h5>Aries</h5>
+                <h5>{zodiac1}</h5>
               </div>
               <div className='zodiac'>
                 <img src="" alt="" />
-                <h5>Aries</h5>
+                <h5>{zodiac2}</h5>
               </div>
             </div>
           </div>
