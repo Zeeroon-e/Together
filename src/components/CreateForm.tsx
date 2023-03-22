@@ -2,6 +2,7 @@ import './createform.scss';
 import { Key, useState } from 'react';
 import photo from '../assets/Add_round.svg'
 import { useNavigate } from 'react-router-dom'
+import { setTimeout } from "timers/promises";
 
 function CreateForm() {
     const [leftName, setLeftName] = useState('');
@@ -23,14 +24,14 @@ function CreateForm() {
     
 
     interface datatoBackend {
-         sendData: {
-            __id: string ;
-            data: {
-                names: string[];
-                birthdates: string[];
-                togetherdate: string;
-            };
-        }
+        
+        user: string ;
+        data: {
+            names: string[];
+            birthdates: string[];
+            togetherdate: string;
+        };
+        
     }
 
     const handleAddSpecDay = () => {
@@ -77,7 +78,7 @@ function CreateForm() {
     const handleSubmit =  (e:any) =>{
         e.preventDefault();
         let sendData: any = {
-            __id: activeUser,
+            user: activeUser,
             data: {
                 names: [leftName,rightName],
                 birthdates: [leftBirthDate, rightBirthDate],
@@ -91,11 +92,11 @@ function CreateForm() {
 
     }
 
-    const handleFileUpload = async (e:any) => {
-        const file = e.target.files[0];
-        const base64 = await convertToBase64(file)
-        setPostImage({...postImage, myFile : base64})
-    }
+    // const handleFileUpload = async (e:any) => {
+    //     const file = e.target.files[0];
+    //     const base64 = await convertToBase64(file)
+    //     setPostImage({...postImage, myFile : base64})
+    // }
   return (
     <form className='form' onSubmit={handleSubmit}>
         <div className='photo'>

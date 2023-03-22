@@ -1,17 +1,17 @@
 import mongoose, {Schema}  from "mongoose";
 interface IformData extends mongoose.Document{
-    __id: string;
+    user: String;
         data: {
             names: String[];
             birthdates: String[];
-            togetherdate: string;
+            togetherdate: String;
         }
     
    
 }
 const formSchema = new mongoose.Schema({
     
-    __id: String,
+    user: String,
         data: {
         names: Array,
         birthdates: Array,

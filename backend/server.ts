@@ -14,7 +14,6 @@ mongoose.set('strictQuery', false);
 app.use( express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
 
 const PORT = process.env.PORT || 3005;
 const URI = process.env.URI || 'mongodb+srv://togetheradmin:together9898@firstcluster.xhz64cl.mongodb.net/together?retryWrites=true&w=majority';

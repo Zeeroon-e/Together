@@ -3,32 +3,22 @@ import express from "express";
 import { Request, Response } from "express";
 const router = express.Router();
 import  User  from "../models/user.js";
+import  FormData  from "../models/file.js";
 router.use( express.json());
 
-router.get('/', async (req, res) => {
-    
-    try {
 
-        const result = await User.find();
-        console.log(result);
-        res.json(result)
-    } catch (err) {
-
-        console.log(err);
-    }
-    
-});
 
 
 router.post('/login', async (req: Request, res: Response) => {
+    const credentials = req.body;
+    const user = await User.findOne(credentials);
     
     try {
-        const credentials = req.body;
-        const user = await User.findOne(credentials); 
+        
 
         if (user) {
-            res.status(200).json(user)
             
+            res.status(200).json(user)    
         } else { 
           res.status(400).json("check if email and password are correct. If you dont have an account make sure to sign up")  
         }

@@ -24,9 +24,7 @@ import './login.scss'
   // }
   
   
-  useEffect(() => {
-   
-  }, [])
+ 
 
   async function userLogin() {
     const credentials = {
@@ -41,12 +39,15 @@ import './login.scss'
     }
     const response = await fetch('/api/users/login', requestOptions)
 
+
     const userExists = await response.json();
+    console.log(userExists);
+    console.log(response.status);
 
     if (response.status === 200) {
       console.log("Signing in with: ",userExists);
-      localStorage.setItem('activeUser', userExists._id);
-      navigate('/home');
+      localStorage.setItem('activeUser', userExists.email);
+      navigate('/homecreate');
     } else {
       console.log("check if email and password are correct. If you dont have an account make sure to sign up");
     }

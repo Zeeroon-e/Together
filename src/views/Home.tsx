@@ -8,7 +8,7 @@ function Home() {
         <Header />
       </nav>
       <main className='content-container'>
-        
+        Home
       </main>
     
     </div>
