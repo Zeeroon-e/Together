@@ -13,7 +13,7 @@ function CreateForm() {
 
     const [dateTogether, setDateTogether] = useState('');
 
-    const [ allSpecDates, setAllSpecDates] = useState<any>([]);
+    const [allSpecDates, setAllSpecDates] = useState<any>([]);
     const [addTitle, setAddTitle] = useState('');
     const [addDate, setAddDate] = useState('');
 
@@ -81,14 +81,14 @@ function CreateForm() {
         saveToServer();
     }
    
-    // const handleFileUpload = async (e:any) => {
-         
+    const handleFileUpload = async (e:any) => {
         
-    // }
+        
+    }
   return (
     <form className='form' onSubmit={handleSubmit}>
         <div className='photo'>
-            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg'  />
+            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg' onChange={(e) => handleFileUpload(e)} />
             <label htmlFor="file-upload" className='custom-file-upload'>
                 <img src={photo} alt="add photo" className='photo-display' />
             </label>
