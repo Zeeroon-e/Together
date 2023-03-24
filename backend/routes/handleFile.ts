@@ -37,28 +37,28 @@ router.post('/upload/file', upload.single('image'), async (req, res) => {
 router.post('/upload', async (req, res) => {
     
     try {
-        const body = req.body;
+        // const body = req.body;
     
-        const checkDb = await FormData.find();
+        // const checkDb = await FormData.find();
 
-        console.log("Whole dB===:",checkDb);
+        // console.log("Whole dB===:",checkDb);
 
-        const checkifexist = checkDb.find((data) => {
-         return data.user === body.user   
-        });
+        // const checkifexist = checkDb.find((data) => {
+        //  return data.user === body.user   
+        // });
         
-        console.log("checkifexist===",checkifexist);
-        if (checkifexist !== undefined) {
+        // console.log("checkifexist===",checkifexist);
+        // if (checkifexist !== undefined) {
 
-            console.log("user have saved data");
-            res.status(302).json("form already Saved");        
-        } else {
+        //     console.log("user have saved data");
+        //     res.status(302).json("form already Saved");        
+        // } else {
 
-            const formdata = new FormData(body);
-            formdata.save();
-            console.log(body,'Saved Data');
-            res.status(201).json("Uploaded Data",);     
-        }
+        //     const formdata = new FormData(body);
+        //     formdata.save();
+        //     console.log(body,'Saved Data');
+        //     res.status(201).json("Uploaded Data",);     
+        // }
         
     } catch (err) {
         console.error(err);
