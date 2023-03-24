@@ -45,7 +45,7 @@ function CreateForm() {
     let activeUser = localStorage.getItem('activeUser')
     
     
-
+    console.log('hi');
     async function saveToServer() {
 
         const specDatesJson = allSpecDates.map((item: any) => JSON.stringify(item));
