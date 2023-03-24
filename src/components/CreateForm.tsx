@@ -81,33 +81,14 @@ function CreateForm() {
         saveToServer();
     }
    
-    const handleFileUpload = async (e:any) => {
-        const file = e.target.files[0];
-        async function uploadFile(file: any) {
-
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(file)
-            }
-
-            const response = await fetch('/api/files/upload/file', requestOptions)
-
-            const data = await response.json();
-
-            console.log('from server',data);
-
-            console.log(file);
-        }
-
-        uploadFile(file);
+    // const handleFileUpload = async (e:any) => {
+         
         
-        
-    }
+    // }
   return (
     <form className='form' onSubmit={handleSubmit}>
         <div className='photo'>
-            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg' onChange={(e) => handleFileUpload(e)} />
+            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg'  />
             <label htmlFor="file-upload" className='custom-file-upload'>
                 <img src={photo} alt="add photo" className='photo-display' />
             </label>

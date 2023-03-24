@@ -1,15 +1,11 @@
 import express from "express";
 import { Request, Response } from "express";
-import multer from "multer";
 const router = express.Router();
 import  FormData  from "../models/file.js";
 
 router.use( express.json());
 
-const storage = multer.memoryStorage();
-const upload = multer({storage: storage});
 
-upload.single('image');
 
 router.get('/getfiles', async (req, res) => {
     const checkDb = await FormData.find();
@@ -23,12 +19,7 @@ router.get('/getfiles', async (req, res) => {
     }
 });
 
-router.post('/upload/file', upload.single('image'), async (req, res) => {
-    console.log("body :",req.body);
-    console.log("file :",req.file);
 
-    res.status(200).json(req.body);
-});
 
 
 
