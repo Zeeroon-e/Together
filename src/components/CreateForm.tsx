@@ -1,6 +1,7 @@
 import './createform.scss';
 import { Key, useState, useEffect } from 'react';
 import photo from '../assets/Add_round.svg'
+import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom'
 import addIcon from '../assets/Add_round.svg'
 
@@ -17,33 +18,37 @@ function CreateForm() {
     const [addTitle, setAddTitle] = useState('');
     const [addDate, setAddDate] = useState('');
 
-    const [postImage, setPostImage] = useState<any>({ myFile : ""});
     const navigate = useNavigate();
 
     
 
     const handleAddSpecDay = () => {
         let newSpecDay = {
+            id: uuidv4(),
             title: addTitle,
             date: addDate
         }
 
         let updatedSpecDateArr: any = [...allSpecDates];
         updatedSpecDateArr.push(newSpecDay)
+        console.log(updatedSpecDateArr)
         setAllSpecDates(updatedSpecDateArr)
     }
 
-    const handleDeleteSpecDay = (index: any ) => {
-         let reducedSpecDate = [...allSpecDates];
-         reducedSpecDate.splice(index);
-         setAllSpecDates(reducedSpecDate);
-        console.log(index)    
+    const handleDeleteSpecDay = (id: string ) => {
+        let filtered = allSpecDates.filter((item: { id: string; }) => item.id !== id)
+        setAllSpecDates(filtered);
+            
     }
     
     
     let activeUser = localStorage.getItem('activeUser')
+    
+    
 
     async function saveToServer() {
+
+        const specDatesJson = allSpecDates.map((item: any) => JSON.stringify(item));
 
         let sendData: any = {
             user: activeUser,
@@ -51,6 +56,7 @@ function CreateForm() {
                 names: [leftName,rightName],
                 birthdates: [leftBirthDate, rightBirthDate],
                 togetherdate: dateTogether,
+                specdates: specDatesJson,
             }
         }
 
@@ -103,7 +109,7 @@ function CreateForm() {
             <div className='field'> 
               <div className='name'>
                   <label htmlFor="text">Name</label>
-                  <input type="text" required value={leftName} onChange={(e) => setLeftName(e.target.value)}/>
+                  <input type="text"  value={leftName} onChange={(e) => setLeftName(e.target.value)}/>
               </div>
 
               <div className='dateofbirth'>
@@ -140,12 +146,12 @@ function CreateForm() {
             <img src={addIcon} onClick={handleAddSpecDay} alt="" className='add-icon'/>
         </div>
         <div className='special-dates'>
-            {allSpecDates.map((item: {title:string, date:string}, index: Key) => {
+            {allSpecDates.map((item: {title:string, date:string, id:string}, index: Key) => {
                 return(
                     <div className='special-date-list' key={index}>
                         <h4>{item.title}</h4>
                         <h5>{item.date}</h5>
-                        <p className='delete-icon' onClick={()=> handleDeleteSpecDay(index)}></p>
+                        <p className='delete-icon' onClick={()=> handleDeleteSpecDay(item.id)}></p>
                     </div>
                 )
             })}
@@ -160,16 +166,4 @@ function CreateForm() {
 
 export default CreateForm
 
-function convertToBase64(file: any){
-    return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = () => {
-            resolve(fileReader.result);    
-        };
-        fileReader.onerror = (error) => {
-            reject(error);
-        }
 
-    })
-}

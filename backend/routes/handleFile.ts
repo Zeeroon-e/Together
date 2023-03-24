@@ -48,6 +48,7 @@ router.post('/upload', async (req, res) => {
             const formdata = new FormData(body);
             formdata.save();
             console.log(body,'Saved Data');
+            console.log("body===",body)
             res.status(201).json("Uploaded Data",);     
         }
         

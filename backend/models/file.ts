@@ -5,6 +5,7 @@ interface IformData extends mongoose.Document{
             names: String[];
             birthdates: String[];
             togetherdate: String;
+            specdates: String[];
         }
     
    
@@ -16,6 +17,7 @@ const formSchema = new mongoose.Schema({
         names: Array,
         birthdates: Array,
         togetherdate: String,
+        specdates: Array,
     }
 });
 
