@@ -27,7 +27,7 @@ router.post('/upload/file', upload.single('image'), async (req, res) => {
     console.log("body :",req.body);
     console.log("file :",req.file);
 
-    res.status(200).json('hi');
+    res.status(200).json(req.body);
 });
 
 
