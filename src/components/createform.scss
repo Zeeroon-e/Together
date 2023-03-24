@@ -1,7 +1,7 @@
 .form{
     background-color: #252A34;
-    width: 80vw;
     height: 100%;
+    width: 80vw;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -20,8 +20,6 @@
     opacity: 1;
     width: 0.1px;
     height: 0.1px;
-    position: absolute;
-    
 }
 .photo-display{
     display: flex;
@@ -72,10 +70,10 @@
     margin: 5px;
     color: white;
     input{
-        height: 2rem;
+        height: 1.5rem;
     }
     .name{
-        font-size: calc(15px + 0.390625vw);
+        font-size: 1em;
         margin: 17px 5px;
         display: flex;
         flex-direction: column;
@@ -83,7 +81,7 @@
     }
 
     .dateofbirth{
-        font-size: calc(15px + 0.390625vw);
+        font-size: 1em;
         margin: 17px 5px;
         display: flex;
         flex-direction: column;
@@ -98,7 +96,7 @@
     flex-direction: column;
     width: 80%;
     input{
-        height: 2rem;
+        height: 1.5rem;
         margin: 10px 0px;
     }
 }
@@ -109,33 +107,23 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
-    padding: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
     color: white;
     width: 80%;
     background-color: #252A34;
     box-shadow: inset 4px 0px 4px #00000050, inset 0 4px 4px #0000007a;
-    margin-bottom: 1rem;
-    p{
-        cursor: pointer;
-        color: #252a3400;
-        display: flex;
-        justify-content: center;
-        width: 50px;
-        height: 2.8rem;
-        background-image: url('../assets/Add_square.svg');
-        background-repeat: no-repeat;
-        background-size: cover;    
+    .add-icon{
+        cursor: pointer; 
     }
-    .own-date-title{
-        margin-bottom: 1rem;
-    }
+    
     .add-field{
         width: 100%;
         display: flex;
         flex-direction: column;
         margin: 1rem;
         input{
-            height: 2rem;
+            height: 1.5rem;
             margin: 10px;
         }
     }

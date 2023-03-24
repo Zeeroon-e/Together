@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import Header from '../components/Header';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
@@ -16,7 +16,6 @@ function Home() {
   const [weeks, setWeeks] = useState<number>();
   const [zodiac1, setZodiac1] = useState('');
   const [zodiac2, setZodiac2] = useState('');
-
 
 
 
@@ -58,7 +57,6 @@ function Home() {
       const slicedDay = date.slice(8,10)
       
       let day = slicedDay;
-      console.log("ggggggg",day);
       if (sliced.includes(0)) {
         
         month = sliced.slice(1,2)
@@ -74,12 +72,7 @@ function Home() {
     };
     setZodiac1(findSign(data.birthdates[0]))
     setZodiac2(findSign(data.birthdates[1]))
-
-    
-
-    
-
-    
+  
   }
 
   const fetchData = async () => {
@@ -93,21 +86,17 @@ function Home() {
     } else {
       console.log('didnt find data');
     }
-    
-
-    
-
   }
-
   useEffect(() => {
-    fetchData()
-}, );
+    fetchData();
+  }, );
+
   return (
-    <div>
-      <nav className='header-display'>
+    <>
+      
         <Header />
-      </nav>
-      <main className='content-container'>
+      
+      <main className='content-wrapper '>
         <div className='info-container'>
           <div className='photo'>
             <img src="" alt="" />
@@ -140,7 +129,7 @@ function Home() {
         </div>
       </main>
     
-    </div>
+    </>
   )
 }
 

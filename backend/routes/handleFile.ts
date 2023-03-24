@@ -1,9 +1,15 @@
 import express from "express";
 import { Request, Response } from "express";
+import multer from "multer";
 const router = express.Router();
 import  FormData  from "../models/file.js";
+
 router.use( express.json());
 
+const storage = multer.memoryStorage();
+const upload = multer({storage: storage});
+
+upload.single('image');
 
 router.get('/getfiles', async (req, res) => {
     const checkDb = await FormData.find();
@@ -17,32 +23,41 @@ router.get('/getfiles', async (req, res) => {
     }
 });
 
+router.post('/upload/file', upload.single('image'), async (req, res) => {
+    console.log("body :",req.body);
+    console.log("file :",req.file);
+
+    res.status(200).json('hi');
+});
+
 
 
 
 
 router.post('/upload', async (req, res) => {
-    const body = req.body;
     
-    const checkDb = await FormData.find();
     try {
-        
+        const body = req.body;
+    
+        const checkDb = await FormData.find();
+
         console.log("Whole dB===:",checkDb);
 
-        const checkifexist = checkDb.find((data) => data.user === body.user);
+        const checkifexist = checkDb.find((data) => {
+         return data.user === body.user   
+        });
         
-        console.log("checkifexist===",checkifexist?.user);
-        if (checkifexist?.user === body.user) {
-            console.log("found user")
-                console.log("user have saved data");
-                res.status(302).json("form already Saved"); 
-            
-        } else if (checkifexist?.user === undefined) {
-            console.log("user not found");
-                const formdata = new FormData(body);
-                formdata.save();
-                console.log(body,'Saved Data');
-                res.status(201).json("success",); 
+        console.log("checkifexist===",checkifexist);
+        if (checkifexist !== undefined) {
+
+            console.log("user have saved data");
+            res.status(302).json("form already Saved");        
+        } else {
+
+            const formdata = new FormData(body);
+            formdata.save();
+            console.log(body,'Saved Data');
+            res.status(201).json("Uploaded Data",);     
         }
         
     } catch (err) {

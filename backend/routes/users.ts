@@ -15,7 +15,7 @@ router.post('/login', async (req: Request, res: Response) => {
     
     try {
         
-
+        console.log(user)
         if (user) {
             
             res.status(200).json(user)    

@@ -1,10 +1,12 @@
 .login-container{
     background-color: rgb(29, 29, 29);
-    padding: 2.5rem;
-    margin: auto;
+    height: 70vh;
+    width: 80vw;
     display: flex;
-    align-items: center;
+    justify-content: center;
     flex-direction: column;
+    margin: auto;
+    align-items: center;
     h2{
         margin-bottom: 1rem;
         color: white;

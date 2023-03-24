@@ -41,8 +41,7 @@ import './login.scss'
 
 
     const userExists = await response.json();
-    console.log(userExists);
-    console.log(response.status);
+    
 
     if (response.status === 200) {
       console.log("Signing in with: ",userExists);
@@ -60,21 +59,23 @@ import './login.scss'
   
 
   return (
-    <div className='login-container content-wrapper'>
-        <h2>Together</h2>
-        <div className='input-field'>
-            <label>E-mail</label>
-            <input type="text"  className='email-input' placeholder="example@hotmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>    
-        </div>
-        <div className='input-field'>
-            <label>Password</label>
-            <input type="text"  className='password-input' placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>    
-        </div>
-        <button className='sign-in-btn' onClick={signInBtn}>Sign in</button>
-        <div className='signup-section'>
-          <p>Dont have an account?</p>
-          <button className='sign-up-btn' onClick={RedirectSignup}>Sign up</button>
-        </div>
+    <div className='content-wrapper'>
+      <div className='login-container '>
+          <h2>Together</h2>
+          <div className='input-field'>
+              <label>E-mail</label>
+              <input type="text"  className='email-input' placeholder="example@hotmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>    
+          </div>
+          <div className='input-field'>
+              <label>Password</label>
+              <input type="text"  className='password-input' placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>    
+          </div>
+          <button className='sign-in-btn' onClick={signInBtn}>Sign in</button>
+          <div className='signup-section'>
+            <p>Dont have an account?</p>
+            <button className='sign-up-btn' onClick={RedirectSignup}>Sign up</button>
+          </div>
+      </div>
     </div>
   )
 }

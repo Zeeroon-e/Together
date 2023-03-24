@@ -14,15 +14,10 @@ function Home() {
     let activeUser = localStorage.getItem('activeUser');
     const found = data.filter((data: { user: string | null; }) => data.user === activeUser)
     if (found.length > 0) {
-      console.log('found!')
       navigate('/home');
     } else {
-      console.log('didnt find');
+      console.log('createform page');
     }
-    
-
-    
-
   }
 
   useEffect(() => {
@@ -30,15 +25,16 @@ function Home() {
 }, []);
 
   return (
-    <div>
-      <nav className='header-display'>
+    <>
+      
         <Header />
-      </nav>
-      <main className='content-container'>
+      
+      <main className='content-wrapper '>
+        
         <CreateForm />
       </main>
     
-    </div>
+    </>
   )
 }
 

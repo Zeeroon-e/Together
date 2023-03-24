@@ -1,8 +1,8 @@
 import './createform.scss';
-import { Key, useState } from 'react';
+import { Key, useState, useEffect } from 'react';
 import photo from '../assets/Add_round.svg'
 import { useNavigate } from 'react-router-dom'
-import { setTimeout } from "timers/promises";
+import addIcon from '../assets/Add_round.svg'
 
 function CreateForm() {
     const [leftName, setLeftName] = useState('');
@@ -18,21 +18,9 @@ function CreateForm() {
     const [addDate, setAddDate] = useState('');
 
     const [postImage, setPostImage] = useState<any>({ myFile : ""});
-    const [dataToServer, setDataToServer] = useState<datatoBackend >();
     const navigate = useNavigate();
 
     
-
-    interface datatoBackend {
-        
-        user: string ;
-        data: {
-            names: string[];
-            birthdates: string[];
-            togetherdate: string;
-        };
-        
-    }
 
     const handleAddSpecDay = () => {
         let newSpecDay = {
@@ -53,30 +41,10 @@ function CreateForm() {
     }
     
     
-     let activeUser = localStorage.getItem('activeUser')
+    let activeUser = localStorage.getItem('activeUser')
 
     async function saveToServer() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataToServer)
-        }
 
-        const response = await fetch('/api/files/upload', requestOptions)
-
-        const data = await response.json();
-        console.log(data)
-
-        if (response.status === 201) {
-            navigate('/home');
-
-        } else {
-            console.log("didnt upload");
-        }
-    }
-
-    const handleSubmit =  (e:any) =>{
-        e.preventDefault();
         let sendData: any = {
             user: activeUser,
             data: {
@@ -85,24 +53,63 @@ function CreateForm() {
                 togetherdate: dateTogether,
             }
         }
-        console.log(dataToServer)
-        setDataToServer(sendData);
-        saveToServer();
-        
 
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(sendData)
+        }
+
+        const response = await fetch('/api/files/upload', requestOptions)
+
+        const data = await response.json();
+
+        if (response.status === 201) {
+            // navigate('/home');
+
+        } else {
+            console.log(data);
+        }
     }
 
-    // const handleFileUpload = async (e:any) => {
-    //     const file = e.target.files[0];
-    //     const base64 = await convertToBase64(file)
-    //     setPostImage({...postImage, myFile : base64})
-    // }
+    
+    const handleSubmit =  (e:any) =>{
+
+        
+        e.preventDefault();
+        
+        saveToServer();
+    }
+   
+    const handleFileUpload = async (e:any) => {
+        const file = e.target.files[0];
+        async function uploadFile(file: any) {
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(file)
+            }
+
+            const response = await fetch('/api/files/upload/file', requestOptions)
+
+            const data = await response.json();
+
+            console.log('from server',data);
+
+            console.log(file);
+        }
+
+        uploadFile(file);
+        
+        
+    }
   return (
     <form className='form' onSubmit={handleSubmit}>
         <div className='photo'>
-            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg'  />
+            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg' onChange={(e) => handleFileUpload(e)} />
             <label htmlFor="file-upload" className='custom-file-upload'>
-                <img src={postImage.myFile || photo} alt="add photo" className='photo-display' />
+                <img src={photo} alt="add photo" className='photo-display' />
             </label>
         </div>
         <div className='icon-container'>
@@ -149,7 +156,7 @@ function CreateForm() {
                 <label htmlFor="">Date</label>
                 <input type="date" value={addDate} onChange={(e) => setAddDate(e.target.value)}/>
             </div>
-            <p className='add-icon' onClick={handleAddSpecDay}></p>
+            <img src={addIcon} onClick={handleAddSpecDay} alt="" className='add-icon'/>
         </div>
         <div className='special-dates'>
             {allSpecDates.map((item: {title:string, date:string}, index: Key) => {

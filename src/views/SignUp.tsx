@@ -50,35 +50,37 @@ function SignUp() {
     }
 
   return (
-    <div className='signup-container'>
-        <h2>Together</h2>
-        <div className='input-field'>
-            <label>E-mail</label>
-            <input type="text"  className='email-input' placeholder="example@hotmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>    
-        </div>
-        <div className='input-field'>
-            <label>Password</label>
-            <input type="text"  className='password-input' placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>    
-        </div>
-        <div className='output-text'>
-            <p>{outPutMsg}</p>
-        </div>
-        <button className='sign-up-btn' onClick={signUpBtn}>Sign up</button>
-        <div className='signup-section'>
-          <p>Have an account?</p>
-          <button className='sign-in-btn' onClick={redirectLogin} >Sign in</button>
-        </div>
-        { modal && (
-
-            <div className='modal'>
-                <div className='overlay'>
-                    <p>You have succesfully signed up!</p>
-                    <button onClick={redirectLogin}>Close</button>
-                </div>
+    <div className='content-wrapper'>
+        <div className='signup-container'>
+            <h2>Together</h2>
+            <div className='input-field'>
+                <label>E-mail</label>
+                <input type="text"  className='email-input' placeholder="example@hotmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>    
             </div>
-        )}
-        
-        
+            <div className='input-field'>
+                <label>Password</label>
+                <input type="text"  className='password-input' placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>    
+            </div>
+            <div className='output-text'>
+                <p>{outPutMsg}</p>
+            </div>
+            <button className='sign-up-btn' onClick={signUpBtn}>Sign up</button>
+            <div className='signup-section'>
+            <p>Have an account?</p>
+            <button className='sign-in-btn' onClick={redirectLogin} >Sign in</button>
+            </div>
+            { modal && (
+
+                <div className='modal'>
+                    <div className='overlay'>
+                        <p>You have succesfully signed up!</p>
+                        <button onClick={redirectLogin}>Close</button>
+                    </div>
+                </div>
+            )}
+            
+            
+        </div>
     </div>
   )
 }
