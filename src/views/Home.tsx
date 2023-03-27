@@ -109,7 +109,7 @@ function Home() {
           <div className='together-container'>
             <h3>YOU HAVE BEEN TOGETHER FOR</h3>
             <div className='months-and-days'>
-              <h5>{months} Months Or {days} days</h5>
+              <h5> {months} Months <br /> {days} Days</h5>
             </div>
             <h5 className='weeks'>{weeks} Weeks</h5>
           </div>
@@ -117,12 +117,7 @@ function Home() {
             <h3>ZODIAC SIGNS</h3>
             <div className='zodiac-signs'>
               <div className='zodiac'>
-                <img src="" alt="" />
-                <h5>{zodiac1}</h5>
-              </div>
-              <div className='zodiac'>
-                <img src="" alt="" />
-                <h5>{zodiac2}</h5>
+                <h4>{zodiac1} & {zodiac2}</h4>
               </div>
             </div>
           </div>
