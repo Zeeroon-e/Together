@@ -6,10 +6,7 @@
     display: flex;
     flex-direction: column;
 }
-.photo{
-    width: 100%;
-    height: 20vh;
-}
+
 .icon-container{
     display: flex;
     flex-direction: row;
@@ -24,8 +21,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     margin: 3rem 0rem;
     h3{
+        
         font-size: 1em;
     }
     .months-and-days{
@@ -49,8 +48,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70%;
-    margin-bottom: 50%;
+    text-align: center;
+    height: 10vh;
+    margin-bottom: 2rem;
 
     .zodiac-signs{
         display: flex;
@@ -62,4 +62,28 @@
         box-shadow: inset 4px 0px 4px #00000050, inset 0 4px 4px #0000007a; 
     }
 
+}
+
+.special-date-list{
+    display: flex;
+    justify-content: center;
+
+    .list{
+        color: #252A34;
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0.5rem;
+        background-color: #e2e2e2;
+        border-bottom: 4px solid #7a7b7c;
+
+        .list-title{
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-right: 2px solid #7a7b7c;
+        }
+    }
 }

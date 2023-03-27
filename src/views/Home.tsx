@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Key, useState } from 'react';
 import Header from '../components/Header';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
@@ -10,12 +10,13 @@ import icon2 from '../assets/woman_icon.svg';
 function Home() {
   const [name1, setName1] =useState('');
   const [name2, setName2] =useState('');
-  const [dateTogether, setDateTogether] = useState('');
   const [months, setMonths] = useState<number>();
   const [days, setDays] = useState<number>();
   const [weeks, setWeeks] = useState<number>();
   const [zodiac1, setZodiac1] = useState('');
   const [zodiac2, setZodiac2] = useState('');
+  const [specDates, setSpecDates] = useState([]);
+
 
 
 
@@ -25,12 +26,15 @@ function Home() {
     setName2(data.names[1])
     /// date together calculate
     
-    setDateTogether(data.togetherdate)
-    const date1 = dayjs(dateTogether)
+    const date1 = dayjs(data.togetherdate)
+    
+
     
     const diffMonths = date1.diff(dayjs(), 'M' , true)
     const diffDays = date1.diff(dayjs(), 'd' , true)
     const diffWeeks = date1.diff(dayjs(), 'w' , true)
+    console.log("dddd",diffMonths)
+
 
     function correctnumber (value:any){
       let toNumber = parseInt(value);
@@ -41,6 +45,14 @@ function Home() {
     setWeeks(correctnumber(diffWeeks));
 
     setMonths(correctnumber(diffMonths));
+
+    // set spec dates
+    // let parsedG = JSON.parse(data.specdates)
+    // console.log(parsedG[0]);
+    // setSpecDates(parsedG)
+    const specDatesJson = data.specdates.map((item: any) => JSON.parse(item));
+    setSpecDates(specDatesJson)
+    console.log(specDates)
 
 
     
@@ -89,7 +101,7 @@ function Home() {
   }
   useEffect(() => {
     fetchData();
-  }, );
+  }, []);
 
   return (
     <>
@@ -98,9 +110,6 @@ function Home() {
       
       <main className='content-wrapper '>
         <div className='info-container'>
-          <div className='photo'>
-            <img src="" alt="" />
-          </div>
           <div className='icon-container'>
             <img src={icon1} alt="maleicon" />
             <h2>{name1} & {name2}</h2>
@@ -119,6 +128,20 @@ function Home() {
               <div className='zodiac'>
                 <h4>{zodiac1} & {zodiac2}</h4>
               </div>
+            </div>
+          </div>
+          <div className='spec-dates'>
+            <div>
+            {specDates.map((item: {title:string, date:string, id:string}, index: Key) => {
+                return(
+                    <div className='special-date-list' key={index}>
+                      <div className='list'>
+                        <h4 className='list-title'>{item.title} </h4><h4 className='list-date'>{item.date}</h4>  
+                      </div>
+                    </div>
+                )
+            })}
+              <h4>  </h4>
             </div>
           </div>
         </div>

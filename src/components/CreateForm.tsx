@@ -71,7 +71,7 @@ function CreateForm() {
         const data = await response.json();
 
         if (response.status === 201) {
-            // navigate('/home');
+            navigate('/home');
 
         } else {
             console.log(data);
@@ -87,18 +87,10 @@ function CreateForm() {
         saveToServer();
     }
    
-    const handleFileUpload = async (e:any) => {
-        
-        
-    }
+    
   return (
     <form className='form' onSubmit={handleSubmit}>
-        <div className='photo'>
-            <input type="file" id='file-upload' name="image" className='file' accept='.jpeg, .png, .jpg' onChange={(e) => handleFileUpload(e)} />
-            <label htmlFor="file-upload" className='custom-file-upload'>
-                <img src={photo} alt="add photo" className='photo-display' />
-            </label>
-        </div>
+        
         <div className='icon-container'>
             <p className='man-icon'></p>
             <p className='woman-icon'></p>
