@@ -64,11 +64,11 @@ import './login.scss'
           <h2>Together</h2>
           <div className='input-field'>
               <label>E-mail</label>
-              <input type="text"  className='email-input' placeholder="example@hotmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>    
+              <input type="text" required className='email-input' placeholder="example@hotmail.com" value={email} onChange={(e) => setEmail(e.target.value)}/>    
           </div>
           <div className='input-field'>
               <label>Password</label>
-              <input type="text"  className='password-input' placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>    
+              <input type="text" required className='password-input' placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)}/>    
           </div>
           <button className='sign-in-btn' onClick={signInBtn}>Sign in</button>
           <div className='signup-section'>

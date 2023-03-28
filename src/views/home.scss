@@ -2,7 +2,8 @@
 .info-container{
     background-color: #252A34;
     color: white;
-    width: 100%;
+    width: 80vw;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
 }
@@ -64,9 +65,16 @@
 
 }
 
+.spec-dates{
+    display: flex;
+    justify-content: center;
+    
+}
 .special-date-list{
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 55vw;
 
     .list{
         color: #252A34;
@@ -78,12 +86,19 @@
         border-bottom: 4px solid #7a7b7c;
 
         .list-title{
-            width: 50%;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             border-right: 2px solid #7a7b7c;
+        }
+        .list-date{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
     }
 }

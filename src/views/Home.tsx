@@ -33,7 +33,6 @@ function Home() {
     const diffMonths = date1.diff(dayjs(), 'M' , true)
     const diffDays = date1.diff(dayjs(), 'd' , true)
     const diffWeeks = date1.diff(dayjs(), 'w' , true)
-    console.log("dddd",diffMonths)
 
 
     function correctnumber (value:any){
@@ -46,13 +45,9 @@ function Home() {
 
     setMonths(correctnumber(diffMonths));
 
-    // set spec dates
-    // let parsedG = JSON.parse(data.specdates)
-    // console.log(parsedG[0]);
-    // setSpecDates(parsedG)
+  
     const specDatesJson = data.specdates.map((item: any) => JSON.parse(item));
     setSpecDates(specDatesJson)
-    console.log(specDates)
 
 
     
@@ -60,8 +55,6 @@ function Home() {
     const findSign = (date:any) => {
       const days = [21, 20, 21, 21, 22, 22, 23, 24, 24, 24, 23, 22];
       const signs = ["empty","Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", ];
-      // let month = date.getMonth();
-      // let day = date.getDate();
       
       const sliced = date.slice(5,7);
       let month = sliced;
