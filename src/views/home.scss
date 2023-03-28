@@ -29,21 +29,28 @@
         font-size: 1em;
     }
     .months-and-days{
+        font-size: large;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 80%;
-        height: 2rem;
+        padding: 1rem;
+        height: 4rem;
         background-color: #252A34;
         box-shadow: inset 4px 0px 4px #00000050, inset 0 4px 4px #0000007a;
     }
-    .weeks{
+    .display{
         background-color: white;
         color: #252A34;
+        border-right: 5px solid #252A34;
         padding: 1vw;
     }
 }
 
+.title-spec{
+    display: flex;
+    justify-content: center;
+}
 .zodiac-signs-container{
     display: flex;
     flex-direction: column;

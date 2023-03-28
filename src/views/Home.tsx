@@ -111,9 +111,11 @@ function Home() {
           <div className='together-container'>
             <h3>YOU HAVE BEEN TOGETHER FOR</h3>
             <div className='months-and-days'>
-              <h5> {months} Months <br /> {days} Days</h5>
+              <h5 className='display'>{weeks} Weeks</h5>
+              <h5 className='display'>{months} Months</h5>
+              <h5 className='display'>{days} Days</h5>
             </div>
-            <h5 className='weeks'>{weeks} Weeks</h5>
+            
           </div>
           <div className='zodiac-signs-container'>
             <h3>ZODIAC SIGNS</h3>
@@ -123,7 +125,9 @@ function Home() {
               </div>
             </div>
           </div>
+          <h3 className='title-spec'>SPECIAL DATES</h3>
           <div className='spec-dates'>
+            
             <div>
             {specDates.map((item: {title:string, date:string, id:string}, index: Key) => {
                 return(

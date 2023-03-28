@@ -1,7 +1,7 @@
-import React from 'react'
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
+
 
 
 import './login.scss'
@@ -17,15 +17,6 @@ import './login.scss'
     navigate('/signup');
   }
   
-  // async function getUsers() {
-  //   const response = await fetch('/api/users');
-  //   const users = await response.json();
-  //   console.log(users);
-  // }
-  
-  
- 
-
   async function userLogin() {
     const credentials = {
       email: email,
@@ -44,7 +35,6 @@ import './login.scss'
     
 
     if (response.status === 200) {
-      console.log("Signing in with: ",userExists);
       localStorage.setItem('activeUser', userExists.email);
       navigate('/homecreate');
     } else {

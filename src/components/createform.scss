@@ -123,6 +123,8 @@
     
 }
 .special-dates{
+    display: flex;
+    justify-content: center;
     width: 80%;
     .special-date-list{
         display: flex;
@@ -144,5 +146,23 @@
             background-size: cover;
         }
     }  
+}
+
+.save-btn{
+    width: 5rem;
+    height: 5vh;
+    background-color: #FF2E63;
+    color: white;
+    border-style: none;
+    border-radius: 2px;
+    margin-bottom: 5vh;
+    &:hover{
+        transition-duration: 0.5s;
+        box-shadow: 2px 4px 0px;
+        color: #FF2E63;
+        background-color: white;
+        cursor: pointer;
+        width: 5rem;
+    }
 }
 

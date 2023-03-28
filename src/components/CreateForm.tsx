@@ -31,7 +31,7 @@ function CreateForm() {
 
         let updatedSpecDateArr: any = [...allSpecDates];
         updatedSpecDateArr.push(newSpecDay)
-        console.log(updatedSpecDateArr)
+        
         setAllSpecDates(updatedSpecDateArr)
     }
 
@@ -45,7 +45,6 @@ function CreateForm() {
     let activeUser = localStorage.getItem('activeUser')
     
     
-    console.log('hi');
     async function saveToServer() {
 
         const specDatesJson = allSpecDates.map((item: any) => JSON.stringify(item));
@@ -101,31 +100,31 @@ function CreateForm() {
             <div className='field'> 
               <div className='name'>
                   <label htmlFor="text">Name</label>
-                  <input type="text"  value={leftName} onChange={(e) => setLeftName(e.target.value)}/>
+                  <input type="text" required value={leftName} onChange={(e) => setLeftName(e.target.value)}/>
               </div>
 
               <div className='dateofbirth'>
                   <label htmlFor="text">Birthdate</label>
-                  <input type="date"  value={leftBirthDate} onChange={(e) => setLeftBirthDate(e.target.value)}/>
+                  <input type="date" required value={leftBirthDate} onChange={(e) => setLeftBirthDate(e.target.value)}/>
               </div>
             </div>
 
             <div className='field'>
               <div className='name'>
                   <label htmlFor="text">Name</label>
-                  <input type="text" value={rightName} onChange={(e) => setRightName(e.target.value)}/>
+                  <input type="text" required value={rightName} onChange={(e) => setRightName(e.target.value)}/>
               </div>
 
               <div className='dateofbirth'>
                   <label htmlFor="text">Birthdate</label>
-                  <input type="date" value={rightBirthDate} onChange={(e) => setRightBirthDate(e.target.value)}/>
+                  <input type="date" required value={rightBirthDate} onChange={(e) => setRightBirthDate(e.target.value)}/>
               </div>
             </div>
         </section>
 
         <div className='together-date'>
             <label htmlFor="text" className='together-label'>Date of when u got together </label>
-            <input type="date" value={dateTogether} onChange={(e) => setDateTogether(e.target.value)}/>
+            <input type="date" required value={dateTogether} onChange={(e) => setDateTogether(e.target.value)}/>
         </div>
         <div className='own-date-container'>
             <h4 className='own-date-title'>Add your own special day</h4>
@@ -150,7 +149,7 @@ function CreateForm() {
             
         </div>
 
-        <button type='submit'>Save</button>
+        <button className='save-btn' type='submit'>Save</button>
       
     </form>
   )

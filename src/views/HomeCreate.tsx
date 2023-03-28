@@ -16,7 +16,7 @@ function Home() {
     if (found.length > 0) {
       navigate('/home');
     } else {
-      console.log('createform page');
+      console.log('navigating...');
     }
   }
 
